@@ -9,7 +9,8 @@ namespace Repository.Entity
     public class Order
     {
         public Client Client { get; set; }
-        public Good Good { get; set; }
-        public int Quantity { get; set; }
+        public List<Good> Good { get; set; }
+        public List<int> Quantity { get; set; }
+        public bool IsDelivery { get; set; }
     }
 }

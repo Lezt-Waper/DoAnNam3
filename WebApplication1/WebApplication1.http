@@ -8,3 +8,73 @@ Accept: application/json
 GET {{WebApplication1_HostAddress}}/Good/7
 Accept: application/json
 
+###
+
+POST {{WebApplication1_HostAddress}}/Client
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Lezt Waper",
+    "phoneNumber": "0329280490",
+    "credit": "123456789",
+    "address": "34 fjkdkjfeef"
+}
+
+###
+
+GET {{WebApplication1_HostAddress}}/Client
+Accept: application/json
+
+###
+
+GET {{WebApplication1_HostAddress}}/Client/3
+Accept: application/json
+
+###
+
+POST {{WebApplication1_HostAddress}}/Order
+Accept: application/json
+Content-Type: application/json
+
+{
+  "client": {
+    "id": 0,
+    "name": "Hoang Long",
+    "phoneNumber": "374837493",
+    "credit": "123456789",
+    "address": "34 fkhkelfh"
+  },
+  "good": [
+    {
+      "id": 1,
+      "category": {
+        "categoryId": 0,
+        "name": "string"
+      },
+      "name": "string",
+      "quantity": 0
+    },
+    {
+      "id": 4,
+      "category": {
+        "categoryId": 0,
+        "name": "string"
+      },
+      "name": "string",
+      "quantity": 0
+    },
+    {
+      "id": 5,
+      "category": {
+        "categoryId": 0,
+        "name": "string"
+      },
+      "name": "string",
+      "quantity": 0
+    }
+  ],
+  "quantity": [ 40, 50, 90 ],
+  "isDelivery": false
+}

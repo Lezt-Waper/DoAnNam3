@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Good]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[CategoryId] INT NOT NULL,
+	[Name] NVARCHAR(20) NOT NULL,
+	[Quantity] INT NOT NULL,
+	CONSTRAINT FK_GOOD_CATEGORY FOREIGN KEY (CategoryId) REFERENCES [dbo].[Category] (Id),
+)

@@ -1,5 +1,7 @@
 using Repository;
+using Repository.ClientRepository;
 using Repository.GoodRepository;
+using Repository.OrderRepository;
 using RSA_Encrypt.RSALib;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 builder.Services.AddSingleton<Config>(new Config(connectionString));
 builder.Services.AddSingleton<IGoodRepository, GoodRepository>();
+builder.Services.AddSingleton<IClientRepository, ClientRepository>();
+builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<RSA>(new RSA());
 
 builder.Services.AddControllers();

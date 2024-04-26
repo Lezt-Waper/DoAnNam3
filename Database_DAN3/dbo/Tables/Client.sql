@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Client]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR(50) NOT NULL,
+	[PhoneNumber] NVARCHAR(15) NOT NULL,
+	[Credit] NVARCHAR(19) NOT NULL,
+	[Address] NVARCHAR(50) NOT NULL,
+)
