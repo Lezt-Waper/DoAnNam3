@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spClient_GetAll]
 AS
 begin
-	SELECT Name, PhoneNumber, Credit, Address
+	SELECT Id AS ClientId, Name, PhoneNumber, Credit, Address
 	FROM [dbo].[Client]
 end

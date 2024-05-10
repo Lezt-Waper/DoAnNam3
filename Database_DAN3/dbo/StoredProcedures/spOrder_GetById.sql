@@ -2,13 +2,9 @@
 	@Id int
 AS
 begin
-	SELECT O.Id, O.ToTal, 
-		C.Id AS ClientId, C.Name, C.PhoneNumber, C.Credit, C.Address,
-		OD.Id AS OrderDetailId, OD.Quantity, OD.IsDelivery,
-		G.Id AS GoodId, G.Name, G.Quantity
+	SELECT O.Id AS OrderId, O.ClientId, O.ToTal, 
+		OD.Id AS OrderDetailId, OD.OrderId, OD.GoodId, G.Name AS GoodName, OD.Quantity, OD.IsDelivery
 	FROM [dbo].[Order] O
-	INNER JOIN [dbo].[Client] C
-		ON O.ClientId = C.Id
 	INNER JOIN [dbo].[OrderDetail] OD
 		ON O.Id = OD.OrderId
 	INNER JOIN [dbo].[Good] G

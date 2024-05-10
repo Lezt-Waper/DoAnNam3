@@ -5,4 +5,6 @@ AS
 begin
 	INSERT INTO [dbo].[Order] (ClientId, ToTal)
 	VALUES (@ClientId, @Total)
+
+	SELECT SCOPE_IDENTITY()
 end

@@ -1,64 +1,80 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Repository.Entity;
-using Repository.GoodRepository;
+using Repository.Data;
 
-namespace WebApplication1.Controllers
+namespace WebApplication1.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class GoodController : Controller
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class GoodController : Controller
+    private readonly IGoodData _db;
+    public GoodController(IGoodData db)
     {
-        private readonly IGoodRepository repository;
+        _db = db;
+    }
 
-        public GoodController(IGoodRepository repository)
+    [HttpGet("All")]
+    public async Task<IActionResult> Get()
+    {
+        try
         {
-            this.repository = repository;
+            var result = await _db.Get();
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
         }
-
-        [HttpGet]
-        public async Task<IEnumerable<Good>> GetGoods()
+        catch (Exception)
         {
-            try
-            {
-                var result = await repository.Get();
 
-                if (result == null)
-                {
-                    throw new Exception("Something wrong in database");
-                }
-
-                return result;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Good>> GetGood(int id)
-        {
-            try
-            {
-                var result = await repository.Get(id);
-
-                if (result == null)
-                {
-                    throw new Exception("Something wrong in Database");   
-                }
-
-                return result;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                return BadRequest();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            throw;
         }
     }
+
+    [HttpGet("{id}", Name = "GetById")]
+    public async Task<IActionResult> Get(int id)
+    {
+        try
+        {
+            var result = await _db.Get(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    [HttpGet("ByCategory")]
+    public async Task<IActionResult> GetByCategoryId([FromQuery]int CategoryId) 
+    {
+        try
+        {
+
+            var result = await _db.GetByCategoryId(CategoryId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
 }

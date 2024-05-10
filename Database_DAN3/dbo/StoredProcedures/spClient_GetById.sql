@@ -2,7 +2,7 @@
 	@Id int
 AS
 begin
-	SELECT	Name, PhoneNumber, Credit, Address
+	SELECT Id AS ClientId, Name, PhoneNumber, Credit, Address
 	FROM [dbo].[Client]
 	WHERE Id = @Id
 end

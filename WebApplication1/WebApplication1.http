@@ -1,25 +1,40 @@
 @WebApplication1_HostAddress = http://localhost:5217
 
-GET {{WebApplication1_HostAddress}}/Good/
+GET {{WebApplication1_HostAddress}}/Category/
 Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/Good/7
+GET {{WebApplication1_HostAddress}}/Category/1
+
+###
+
+GET {{WebApplication1_HostAddress}}/Good/All
 Accept: application/json
 
 ###
+
+GET {{WebApplication1_HostAddress}}/Good/4
+Accept: application/json
+
+###
+
+GET {{WebApplication1_HostAddress}}/Good/ByCategory?categoryId=1
+Accept: application/json
+
+###
+
 
 POST {{WebApplication1_HostAddress}}/Client
 Accept: application/json
 Content-Type: application/json
 
 {
-    "id": 0,
-    "name": "Lezt Waper",
-    "phoneNumber": "0329280490",
-    "credit": "123456789",
-    "address": "34 fjkdkjfeef"
+    "clientId": 0,
+    "name": "Nguyen Hoang Long",
+    "phoneNumber": "032921110",
+    "credit": "123467889",
+    "address": "44 fjkdkjfeef"
 }
 
 ###
@@ -78,3 +93,76 @@ Content-Type: application/json
   "quantity": [ 40, 50, 90 ],
   "isDelivery": false
 }
+
+###
+
+GET {{WebApplication1_HostAddress}}/OrderDetail/All
+Accept: application/json
+
+###
+
+GET {{WebApplication1_HostAddress}}/OrderDetail/ByOrderId?id=4
+Accept: application/json
+
+###
+
+GET {{WebApplication1_HostAddress}}/OrderDetail/ByGoodId?id=1
+Accept: application/json
+
+###
+
+POST {{WebApplication1_HostAddress}}/OrderDetail
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "orderDetailId": 0,
+    "orderId": 1,
+    "goodId": 1,
+    "goodName": "string",
+    "quantity": 30,
+    "isDelivery": true
+  },
+  {
+    "orderDetailId": 0,
+    "orderId": 1,
+    "goodId": 2,
+    "goodName": "string",
+    "quantity": 40,
+    "isDelivery": true
+  }
+
+]
+
+###
+
+POST {{WebApplication1_HostAddress}}/Order
+Accept: application/json
+Content-Type: application/json
+
+{
+  "orderId": 0,
+  "clientId": 1,
+  "total": 0,
+  "details": [
+    {
+      "orderDetailId": 0,
+      "orderId": 0,
+      "goodId": 2,
+      "goodName": "string",
+      "quantity": 30,
+      "isDelivery": true
+    },
+    {
+      "orderDetailId": 0,
+      "orderId": 0,
+      "goodId": 3,
+      "goodName": "string",
+      "quantity": 30,
+      "isDelivery": true
+    }
+  ]
+}
+
+###

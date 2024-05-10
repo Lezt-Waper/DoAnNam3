@@ -83,5 +83,10 @@
     <Build Include="dbo\StoredProcedures\spGood_Insert.sql" />
     <Build Include="dbo\StoredProcedures\spOrder_Insert.sql" />
     <Build Include="dbo\StoredProcedures\spOrderDetail_Insert.sql" />
+    <Build Include="dbo\StoredProcedures\spOrderDetail_GetByOrderId.sql" />
+    <Build Include="dbo\StoredProcedures\spOrderDetail_GetByGoodId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

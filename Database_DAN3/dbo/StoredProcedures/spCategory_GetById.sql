@@ -2,7 +2,7 @@
 	@Id int
 AS
 begin
-	SELECT Id, CategoryName
+	SELECT Id AS CategoryId, CategoryName
 	FROM dbo.[Category]
 	WHERE Id = @Id;
 end
