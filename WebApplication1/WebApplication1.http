@@ -49,53 +49,6 @@ Accept: application/json
 
 ###
 
-POST {{WebApplication1_HostAddress}}/Order
-Accept: application/json
-Content-Type: application/json
-
-{
-  "client": {
-    "id": 0,
-    "name": "Hoang Long",
-    "phoneNumber": "374837493",
-    "credit": "123456789",
-    "address": "34 fkhkelfh"
-  },
-  "good": [
-    {
-      "id": 1,
-      "category": {
-        "categoryId": 0,
-        "name": "string"
-      },
-      "name": "string",
-      "quantity": 0
-    },
-    {
-      "id": 4,
-      "category": {
-        "categoryId": 0,
-        "name": "string"
-      },
-      "name": "string",
-      "quantity": 0
-    },
-    {
-      "id": 5,
-      "category": {
-        "categoryId": 0,
-        "name": "string"
-      },
-      "name": "string",
-      "quantity": 0
-    }
-  ],
-  "quantity": [ 40, 50, 90 ],
-  "isDelivery": false
-}
-
-###
-
 GET {{WebApplication1_HostAddress}}/OrderDetail/All
 Accept: application/json
 
@@ -166,3 +119,14 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{WebApplication1_HostAddress}}/Order/All
+Accept: application/json
+
+###
+
+GET {{WebApplication1_HostAddress}}/Order/ByOrderId?id=4
+
+###
+
+GET {{WebApplication1_HostAddress}}/Order/ByClientId?clientId=1

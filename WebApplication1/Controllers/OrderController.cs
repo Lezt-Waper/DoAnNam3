@@ -17,6 +17,69 @@ public class OrderController : Controller
         _orderDetailDb = orderDetailDb;
     }
 
+    [HttpGet("All")]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var result = await _orderDb.GetAll();
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    [HttpGet("ByOrderId")]
+    public async Task<IActionResult> GetByOrderId([FromQuery]int id)
+    {
+        try
+        {
+            var result = await _orderDb.GetById(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    [HttpGet("ByClientId")]
+    public async Task<IActionResult> GetByClientId([FromQuery]int clientId)
+    {
+        try
+        {
+            var result = await _orderDb.GetByClientId(clientId);
+
+            if (result == null) 
+            {
+                return NotFound(); 
+            }
+
+            return Ok(result);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
     [HttpPost]
     public async Task<IActionResult> Create([FromBody]Order order)
     {
