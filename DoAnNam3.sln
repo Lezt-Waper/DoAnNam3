@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSA_Encrpyt", "RSA_Encrpyt\
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database_DAN3", "Database_DAN3\Database_DAN3.sqlproj", "{92AD85E4-A1CC-43A1-A2EA-8C44ED7851DD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{2A873024-840E-4302-8CCE-7DEE2D327BF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{92AD85E4-A1CC-43A1-A2EA-8C44ED7851DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92AD85E4-A1CC-43A1-A2EA-8C44ED7851DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92AD85E4-A1CC-43A1-A2EA-8C44ED7851DD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2A873024-840E-4302-8CCE-7DEE2D327BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A873024-840E-4302-8CCE-7DEE2D327BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A873024-840E-4302-8CCE-7DEE2D327BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A873024-840E-4302-8CCE-7DEE2D327BF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
