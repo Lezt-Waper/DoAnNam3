@@ -1,19 +1,83 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+
+<div class="main">
+    <header class="header">
+        <div class="grid">
+            <NavMenu />
+        </div>
+    </header>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
+
+    <footer class="footer">
+        <div class="grid__full-width">
+            <div class="grid__row">
+                <div class="footer-one">
+                    <div class="footer-one__contact">
+                        <h2 class="footer-one__heading">Liên Hệ</h2>
+                        <ul class="footer-one__list">
+                            <li class="footer-one__item">
+                                <i class="footer-one-item__icon fa-sharp fa-solid fa-earth-americas"></i>
+                                Lovell Garden xin cảm ơn quý khách đã ghé thăm.
+                            </li>
+                            <li class="footer-one__item">
+                                <i class="footer-one-item__icon fa-solid fa-location-dot"></i>
+                                Nhà Vườn: Lovell Garden - Nam Ô - Đà Nẵng.
+                            </li>
+                            <li class="footer-one__item">
+                                <i class="footer-one-item__icon fa-solid fa-phone"></i>
+                                Tel: 0763767139
+                            </li>
+                            <li class="footer-one__item">
+                                <i class="footer-one-item__icon fa-solid fa-envelope"></i>
+                                Email: LovellGarden@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-one__fast-access">
+                        <h2 class="footer-one__heading">Truy cập nhanh</h2>
+                        <ul class="footer-one__list">
+                            <li class="footer-one__item">
+                                <a href="" class="footer-one-item__link">
+                                    Giới Thiệu
+                                </a>
+                            </li>
+                            <li class="footer-one__item">
+                                <a href="" class="footer-one-item__link">
+                                    Cộng Đồng
+                                </a>
+                            </li>
+                            <li class="footer-one__item">
+                                <a href="" class="footer-one-item__link">
+                                    Hỗ Trợ
+                                </a>
+                            </li>
+                            <li class="footer-one__item">
+                                <a href="" class="footer-one-item__link">
+                                    Chính sách đổi trả hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-two">
+                    <div class="grid">
+                        <p class="footer-two__text">
+                            Lovell Garden xin cảm ơn quý khách đã ghé thăm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
 </div>
 
 <div id="blazor-error-ui">
@@ -21,3 +85,5 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+

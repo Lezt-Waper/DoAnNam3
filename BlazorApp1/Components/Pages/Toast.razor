@@ -1,0 +1,39 @@
+﻿@if (IsShow)
+{
+    <div class="position-fixed top-100 end-100">
+        <div id="toast" class="toast @ToastType">
+            <div class="toast__icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="toast__body">
+                <h3 class="toast__title">@Title</h3>
+                <p class="toast__msg">@Message</p>
+            </div>
+            <div class="toast__close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    public string Title { get; set; }
+    public string Message { get; set; }
+    public string ToastType { get; set; }
+    public bool IsShow { get; set; } = false; 
+
+    public void ShowSuccess(string message)
+    {
+        Message = message;
+        Title = "Thành Công";
+        ToastType = "toast--success";
+        IsShow = true;
+        StateHasChanged();
+
+        Task.Delay(1000).ContinueWith(_ =>
+        {
+            IsShow = false;
+            InvokeAsync(StateHasChanged);
+        });
+    }
+}

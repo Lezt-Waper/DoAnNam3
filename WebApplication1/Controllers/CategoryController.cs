@@ -37,7 +37,7 @@ public class CategoryController : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> Get(string id)
     {
         try
         {

@@ -20,7 +20,7 @@ public class CategoryData : ICategoryData
     public async Task<IEnumerable<Category>> Get() =>
         await _db.LoadData<Category, dynamic>("dbo.spCategory_GetAll", new { });
 
-    public async Task<Category> Get(int Id)
+    public async Task<Category> Get(string Id)
     {
         var result = await _db.LoadData<Category, dynamic>("dbo.spCategory_GetById", new { Id = Id });
         return result.FirstOrDefault();

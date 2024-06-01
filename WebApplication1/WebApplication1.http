@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/Category/1
+GET {{WebApplication1_HostAddress}}/Category/Cay_An_Qua
 
 ###
 
@@ -14,12 +14,12 @@ Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/Good/4
+GET {{WebApplication1_HostAddress}}/Good/caycongtrinh8
 Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/Good/ByCategory?categoryId=1
+GET {{WebApplication1_HostAddress}}/Good/ByCategory?categoryId=Cay_An_Qua
 Accept: application/json
 
 ###
@@ -44,7 +44,7 @@ Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/Client/3
+GET {{WebApplication1_HostAddress}}/Client/1
 Accept: application/json
 
 ###
@@ -54,12 +54,12 @@ Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/OrderDetail/ByOrderId?id=4
+GET {{WebApplication1_HostAddress}}/OrderDetail/ByOrderId?id=3
 Accept: application/json
 
 ###
 
-GET {{WebApplication1_HostAddress}}/OrderDetail/ByGoodId?id=1
+GET {{WebApplication1_HostAddress}}/OrderDetail/ByGoodId?id=cayanqua1
 Accept: application/json
 
 ###
@@ -71,21 +71,14 @@ Content-Type: application/json
 [
   {
     "orderDetailId": 0,
-    "orderId": 1,
-    "goodId": 1,
+    "orderId": 0,
+    "categoryId": 0,
+    "goodId": "string",
     "goodName": "string",
-    "quantity": 30,
-    "isDelivery": true
-  },
-  {
-    "orderDetailId": 0,
-    "orderId": 1,
-    "goodId": 2,
-    "goodName": "string",
-    "quantity": 40,
+    "price": 0,
+    "quantity": 0,
     "isDelivery": true
   }
-
 ]
 
 ###
@@ -102,19 +95,23 @@ Content-Type: application/json
     {
       "orderDetailId": 0,
       "orderId": 0,
-      "goodId": 2,
+      "categoryId": "string",
+      "goodId": "cayanqua1",
       "goodName": "string",
+      "price": 0,
       "quantity": 30,
       "isDelivery": true
     },
     {
       "orderDetailId": 0,
       "orderId": 0,
-      "goodId": 3,
+      "categoryId": "string",
+      "goodId": "cayanqua2",
       "goodName": "string",
-      "quantity": 30,
+      "price": 0,
+      "quantity": 2,
       "isDelivery": true
-    }
+     }
   ]
 }
 

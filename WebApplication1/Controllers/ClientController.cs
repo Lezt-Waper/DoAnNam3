@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Repository.Data;
 using Repository.Model;
+using RSA_Encrypt.RSALib;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Controllers;
 
@@ -9,10 +11,14 @@ namespace WebApplication1.Controllers;
 public class ClientController : Controller
 {
     private readonly IClientData _db;
+    private readonly RSA RSA;
+    private readonly ILogger _logger;
 
-    public ClientController(IClientData db)
+    public ClientController(IClientData db, RSA rsa, ILogger<ClientController> logger)
     {
         _db = db;
+        RSA = rsa;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -58,21 +64,49 @@ public class ClientController : Controller
 
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Client client)
+    [HttpGet("RSAKey")]
+    public IActionResult GetKey() 
     {
+        var Key = new { N = RSA.N, P = RSA.PublicKey };
+        return Ok(Key);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] ClientEncrypt clientEncrypt)
+    {
+        //Logging data receive
+        _logger.LogInformation("Client Data Server Receive\n" + JsonConvert.SerializeObject(clientEncrypt, Formatting.Indented));
         try
         {
-            await _db.Create(client);
+            Client client = Decrypt(clientEncrypt);
+            //Logging decrypted data
+            _logger.LogInformation("Decrypted Client Data\n" + JsonConvert.SerializeObject(client, Formatting.Indented));
 
-            var result = await _db.Get(client.ClientId);
+            var result = await _db.Create(client);
 
-            return Ok();
+            if (result == 0)
+            {
+                return BadRequest();    
+            }
+
+            return Ok(result);
         }
         catch (Exception)
         {
 
             throw;
         }
+    }
+
+    private Client Decrypt(ClientEncrypt clientEncrypt)
+    {
+        Client result = new Client();
+
+        result.Name = RSA.Decrypt(clientEncrypt.Name);
+        result.PhoneNumber = RSA.Decrypt(clientEncrypt.PhoneNumber);
+        result.Credit = RSA.Decrypt(clientEncrypt.Credit);
+        result.Address = RSA.Decrypt(clientEncrypt.Address);
+
+        return result;
     }
 }

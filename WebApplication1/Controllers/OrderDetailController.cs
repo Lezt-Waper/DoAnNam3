@@ -57,7 +57,7 @@ public class OrderDetailController : Controller
 	}
 
 	[HttpGet("ByGoodId")]
-	public async Task<IActionResult> GetByGoodId([FromQuery]int id) 
+	public async Task<IActionResult> GetByGoodId([FromQuery]string id) 
 	{
 		try
 		{

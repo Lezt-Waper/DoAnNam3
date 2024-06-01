@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spOrderDetail_Insert]
 	@OrderId int,
-	@GoodId int,
+	@GoodId NVARCHAR(20),
 	@Quantity int
 AS
 begin

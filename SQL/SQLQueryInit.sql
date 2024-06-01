@@ -1,51 +1,18 @@
-USE Goods_DAN3
+USE Database_DAN3
 
-CREATE TABLE CATEGORY (
-	Id INT NOT NULL IDENTITY(1,1),
-	Name NVARCHAR(20) NOT NULL,
-	PRIMARY KEY (Id)
-);
 
-CREATE TABLE GOOD (
-	Id INT NOT NULL IDENTITY(1,1),
-	CategoryId INT NOT NULL,
-	Name NVARCHAR(20) NOT NULL,
-	Quantity INT NOT NULL,
-	PRIMARY KEY (Id),
-	CONSTRAINT FK_GOODS_CATEGORY FOREIGN KEY (CategoryId) REFERENCES CATEGORY (Id),
-);
-
-CREATE TABLE CLIENT (
-	Id INT NOT NULL IDENTITY(1,1),
-	Name NVARCHAR(50) NOT NULL,
-	PhoneNumber NVARCHAR(15) NOT NULL,
-	Credit NVARCHAR(19) NOT NULL,
-	Address NVARCHAR(50) NOT NULL,
-	PRIMARY KEY (Id),
-);
-
-CREATE TABLE ORDERS (
-	ClientId INT NOT NULL,
-	GoodId INT NOT NULL,
-	Quantity INT NOT NULL,
-	IsDelivery INT NOT NULL DEFAULT 0,
-	PRIMARY KEY (ClientId, GoodId),
-	CONSTRAINT FK_ORDERS_CLIENT FOREIGN KEY (ClientId) REFERENCES CLIENT (Id),
-	CONSTRAINT FK_ORDERS_GOOD FOREIGN KEY (GoodId) REFERENCES GOOD (Id),
-);
-
-INSERT INTO CATEGORY (Name)
+INSERT INTO CATEGORY (Id, CategoryName)
 VALUES 
-	('Electronic'),
-	('Cosmetic'),
-	('Clothing');
+	('El', 'Electronic'),
+	('Co', 'Cosmetic'),
+	('Cl', 'Clothing');
 
-INSERT INTO GOOD (CategoryId, Name, Quantity)
+INSERT INTO Good(Id, CategoryId, Name, Price, Quantity)
 VALUES 
-	('1', 'Laptop', 30),
-	('1', 'Phone', 40),
-	('2', 'Serum', 20),
-	('2', 'Marcara', 60),
-	('3', 'Dress', 90),
-	('3', 'Pant', 100);
+	('L', 'El', 'Laptop', 30, 300),
+	('P', 'El', 'Phone', 40, 300),
+	('S', 'Co', 'Serum', 20, 300),
+	('M', 'Co', 'Marcara', 60, 300),
+	('D', 'Cl', 'Dress', 90, 300),
+	('Pa', 'Cl', 'Pant', 100, 300);
 	

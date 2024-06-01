@@ -1,0 +1,40 @@
+﻿@page "/Cart"
+
+@if (cartProduct is null)
+{
+    <h2>Loading...</h2>
+}
+else
+{
+    <div class="main__container">
+        <div class="grid">
+            <div class="grid__row main__content">
+                <!-- Bread crumb -->
+                <div class="bread-crumb">
+                    <a href="/" class="bread-crum__link">Trang Chủ</a>
+                    <i class="bread-crumb__icon fa-solid fa-angle-right"></i>
+                    <a href="/Cart" class="bread-crum__link">Giỏ Hàng</a>
+                </div>
+
+                <!-- Main cart -->
+                <div class="cart__container">
+                    <div class="cart__label">Giỏ hàng</div>
+                    <div class="cart__main">
+                        <div class="cart__detail-product">
+                            <div class="cart__detail-label">
+                                <p class="cart__detail-content">Sản phẩm</p>
+                                <p class="cart__detail-price">Đơn giá</p>
+                                <p class="cart__detail-quantity">Số lượng</p>
+                                <p class="cart__detail-amount">Thành tiền</p>
+                                <i class="cart-detail__icon-delete fa-solid fa-trash" @onclick="DeleteCart"></i>
+                            </div>
+                            <DisplayCart CartProduct="@cartProduct"></DisplayCart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+}
+
+

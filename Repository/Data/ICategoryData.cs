@@ -5,6 +5,6 @@ namespace Repository.Data
     public interface ICategoryData
     {
         Task<IEnumerable<Category>> Get();
-        Task<Category> Get(int Id);
+        Task<Category> Get(string Id);
     }
 }

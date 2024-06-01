@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spCategory_Get]
-	@Id int
+	@Id NVARCHAR(15)
 AS
 begin
 	SELECT Id AS CategoryId, CategoryName

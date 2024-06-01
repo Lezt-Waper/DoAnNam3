@@ -1,0 +1,29 @@
+﻿@page "/Category/{categoryId}"
+
+@if (Goods is null)
+{
+    <h2>Loading...</h2>
+}
+else
+{
+    <PageTitle>@GetCategoryName()</PageTitle>
+    <div class="main_container">
+        <div class="grid">
+            <div class="grid__row main__content">
+                <div class="contain-products">
+                    <div class="contain-products__label">
+                    </div>
+                    <div class="home-product">
+                        <div class="grid__row" id="products">
+                            <div class="home__product-label">
+                                    <h2 class="home__product-label-category">@GetCategoryName()</h2>
+                            </div>
+                            <DisplayProduct Goods="@Goods.ToList()" numberOfGoods="@Goods.Count()"></DisplayProduct>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

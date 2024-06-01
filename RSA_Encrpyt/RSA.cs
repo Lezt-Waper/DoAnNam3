@@ -91,5 +91,11 @@ namespace RSA_Encrypt.RSALib
 
             return result;
         }
+
+        public void SetKey(long N, long P)
+        {
+            this.DestN = N;
+            this.DestPublicKey = P;
+        }
     }
 }

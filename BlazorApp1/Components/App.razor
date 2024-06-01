@@ -5,15 +5,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="BlazorApp1.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="./Assets/Css/trangChu.css">
+    <link rel="stylesheet" href="./Assets/Css/Base.css">
+    <link rel="stylesheet" href="./Assets/Css/chiTietSanPham.css">
+    <link rel="stylesheet" href="./Assets/Css/gioHang.css">
+    <link rel="stylesheet" href="./Assets/Css/Toast.css">
+    <link rel="stylesheet" href="./Assets/Css/thanhToan.css">
+    <link rel="stylesheet" href="./Assets/Front/fontawesome-6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link fontsize:50px rel="icon" type="image/x-icon" href="./Assets/Img/logo.png">
     <HeadOutlet />
 </head>
 
 <body>
-    <Routes />
+    <Routes @rendermode=RenderMode.InteractiveServer />
     <script src="_framework/blazor.web.js"></script>
 </body>
 

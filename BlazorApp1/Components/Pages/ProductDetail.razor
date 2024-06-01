@@ -1,0 +1,28 @@
+﻿@page "/Product/{ProductId}"
+
+@if (Good is null)
+{
+    <h2>Loading ....</h2>
+}
+else
+{
+    
+    <div class="main__container">
+        <div class="grid">
+            <div class="grid__row main__content">
+                <div class="bread-crumb">
+                    <a href="/" class="bread-crum__link">Trang Chủ</a>
+                    <i class="bread-crumb__icon fa-solid fa-angle-right"></i>
+                    <a href="/Category/@Good.Category.CategoryId" class="bread-crum__link bread-crumb__category">@Good.Category.CategoryName</a>
+                    <i class="bread-crumb__icon fa-solid fa-angle-right"></i>
+                    <span class="bread-crum__name-product">@Good.Name</span>
+                </div>
+
+                <div class="product__wrap">
+                    <DisplayProductDetail Good="@Good"></DisplayProductDetail>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

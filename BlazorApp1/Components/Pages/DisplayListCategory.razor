@@ -1,0 +1,13 @@
+﻿@using Repository.Model
+
+@foreach(var item in Categories)
+{
+    <li class="category-item">
+        <a target="_self" href="/Category/@item.CategoryId" class="category-item__link">@item.CategoryName</a>
+    </li>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<Category> Categories { get; set; } 
+}

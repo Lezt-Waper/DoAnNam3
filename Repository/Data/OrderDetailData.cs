@@ -28,7 +28,7 @@ public class OrderDetailData : IOrderDetailData
         return await _db.LoadData<OrderDetail, dynamic>("dbo.spOrderDetail_GetByOrderId", new { OrderId = orderId });
     }
 
-    public async Task<IEnumerable<OrderDetail>> LoadByGoodId(int goodId)
+    public async Task<IEnumerable<OrderDetail>> LoadByGoodId(string goodId)
     {
         return await _db.LoadData<OrderDetail, dynamic>("dbo.spOrderDetail_GetByGoodId", new { GoodId = goodId });
     }

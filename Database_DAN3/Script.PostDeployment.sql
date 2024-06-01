@@ -14,7 +14,7 @@ ON [dbo].[OrderDetail]
 AFTER INSERT
 AS
 BEGIN
-    DECLARE @GoodId INT;
+    DECLARE @GoodId NVARCHAR(20);
     DECLARE @Quantity INT;
     DECLARE @AvailableQuantity INT;
 

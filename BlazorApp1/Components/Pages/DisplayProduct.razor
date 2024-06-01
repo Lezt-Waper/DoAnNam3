@@ -1,31 +1,37 @@
 ﻿@using Repository.Model
 
-@for (int i = 0; i < 4; i++)
+@for (int i = 0; i < numberOfGoods; i++)
 {
-    <div class="col">
-        @if (i < Goods.Count)
-        {
-            <div class="col">
-                <a href="/ProductDetail/@Goods[i].GoodId">
-                    <div class="card" style="width = 75%">
-                        <img src="./image/pexels-anna-tukhfatullina-food-photographerstylist-2638019.jpg" style="width: 100%; height: 100%" alt="Alternate Text" class="card-img-top" />
-                        <div class="card-body">
-                            <h5 class="card-title">@Goods[i].Name</h5>
-                            <p class="card-text">Price: @Goods[i].Price</p>
-                        </div>
+    @if (i < Goods.Count)
+    {
+        <div class="grid__column-2-4 home-product__detail">
+            <a href="/Product/@Goods[i].GoodId" class="home-product-item">
+                <div class="home-product-item-img__wrap">
+                    <img src="./Assets/Img/@Goods[i].Category.CategoryId/@Goods[i].GoodId/1.jpg" alt="Ảnh cây" class="home-product-item__img">
+                </div>
+                <h4 class="home-product-item__name">@Goods[i].Name</h4>
+                <div class="home-product-item-price">
+                    <span class="home-product-item-price-current">@Goods[i].Price.ToString("N0")</span>
+                </div>
+                <div class="home-product-item__state">
+                    <div class="home-product-item__status">
+                        <i class="home-product-item__status-icon fa-solid fa-check"></i>
+                        <span class="home-product-item__status-name">Còn hàng</span>
                     </div>
-                </a>
-            </div>
-        }
-        else
-        {
-            <div></div>
-        }
-    </div>
+                </div>
+            </a>
+        </div>
+    }
+    else
+    {
+        <div></div>
+    }
     
 }
 
 @code {
     [Parameter]
     public List<Good> Goods { get; set; }
+    [Parameter]
+    public int numberOfGoods { get; set; }
 }

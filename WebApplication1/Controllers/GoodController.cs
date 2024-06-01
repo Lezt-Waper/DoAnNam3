@@ -35,7 +35,7 @@ public class GoodController : Controller
     }
 
     [HttpGet("{id}", Name = "GetById")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> Get(string id)
     {
         try
         {
@@ -56,7 +56,7 @@ public class GoodController : Controller
     }
 
     [HttpGet("ByCategory")]
-    public async Task<IActionResult> GetByCategoryId([FromQuery]int CategoryId) 
+    public async Task<IActionResult> GetByCategoryId([FromQuery]string CategoryId) 
     {
         try
         {

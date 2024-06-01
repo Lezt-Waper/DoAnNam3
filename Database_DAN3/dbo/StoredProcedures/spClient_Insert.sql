@@ -7,4 +7,6 @@ AS
 begin
 	INSERT INTO [dbo].[Client] (Name, PhoneNumber, Credit, Address)
 	VALUES (@Name, @PhoneNumber, @Credit, @Address)
+
+	SELECT SCOPE_IDENTITY()
 end

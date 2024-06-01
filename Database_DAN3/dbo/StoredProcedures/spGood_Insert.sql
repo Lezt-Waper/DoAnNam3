@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spGood_Insert]
 	@CategoryId int,
-	@Name NVARCHAR(20),
+	@Name NVARCHAR(50),
 	@Price INT,
 	@Quantity int
 AS

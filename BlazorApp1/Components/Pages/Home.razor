@@ -3,27 +3,85 @@
 <PageTitle>Home</PageTitle>
 
 
-@if (Goods is null)
+@if (Goods is null || Categories is null)
 {
     <h2>Loading ...</h2>
 }
 else
 {   
-    <h1 class="mb-5">Our Product</h1>
+    <div class="main_container">
+        <div class="grid">
+            <div class="grid__row main__content">
+                <div class="grid__column-2 category__wrap">
+                    <nav class="category">
+                        <ul class="category-list">
+                            <DisplayListCategory Categories="@Categories"></DisplayListCategory>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid__column-10 grid-content home-slide__wrap">
+                    <div class="grid__column-2-5 slider">
+                        <div class="home-slide">
+                            <input type="radio" name="radio-btn" id="home__slide-radio1">
+                            <input type="radio" name="radio-btn" id="home__slide-radio2">
+                            <input type="radio" name="radio-btn" id="home__slide-radio3">
+                            <input type="radio" name="radio-btn" id="home__slide-radio4">
+                            <div class="home__slide-img first">
+                                <img src="./Assets/Img/Slide/slide5.jpg" alt="Ảnh slide" class="slide-img">
+                            </div>
+                            <div class="home__slide-img">
+                                <img src="./Assets/Img/Slide/slider6.jpg" alt="Ảnh slide" class="slide-img">
+                            </div>
+                            <div class="home__slide-img">
+                                <img src="./Assets/Img/Slide/slider7.jpg" alt="Ảnh slide" class="slide-img">
+                            </div>
+                            <div class="home__slide-img">
+                                <img src="./Assets/Img/Slide/vuon-cay-viet-banner-new.jpg" alt="Ảnh slide"
+                                     class="slide-img">
+                            </div>
 
-    <div class="container">
-        
-        @if (Goods.Count() > 0)
-        {
-            @foreach (var item in GetGroupGoodByCategoryId())
-            {
-                <hr class="mt-3">
-                <h3 class="mt-3">@GetCategoryName(item)</h3>
-                <div class="row mb-3">
-                    <DisplayProduct Goods="@item.Take(4).ToList()"></DisplayProduct>
-                </div> 
-            }
-        }
+                            <div class="Slider-auto">
+                                <div class="auto-btn1"></div>
+                                <div class="auto-btn2"></div>
+                                <div class="auto-btn3"></div>
+                                <div class="auto-btn4"></div>
+                            </div>
+                        </div>
+                        <div class="Slider-manual">
+                            <label for="home__slide-radio1" class="manual-btn"></label>
+                            <label for="home__slide-radio2" class="manual-btn"></label>
+                            <label for="home__slide-radio3" class="manual-btn"></label>
+                            <label for="home__slide-radio4" class="manual-btn"></label>
+                        </div>
+                    </div>
+
+                    <div class="grid__column-2-4">
+                        <div class="home-banner">
+                            <img src="./Assets/Img/Hat_Giong/hat-giong-hoa-tulip.png" alt=""
+                                 class="home__banner-img">
+                            <img src="./Assets/Img/Hat_Giong/hat-giong-cay-sen-da-1.jpg.png" alt=""
+                                 class="home__banner-img">
+                            <img src="./Assets/Img/Tieu_Canh/cay-hoa-giay-1.jpg" alt="" class="home__banner-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="home-product__general">
+                    @foreach(var item in GetGroupGoodByCategoryId())
+                    {
+                        <div class="home-product">
+                            <div class="grid__row">
+                                <div class="home__product-label">
+                                    <h2 class="home__product-label-category">@GetCategoryName(item)</h2>
+                                    <a target="_self" href="/Category/@item.Key" class="home__product-view-all">Xem tất cả</a>
+                                </div>
+                                <DisplayProduct Goods="@item.Take(5).ToList()" numberOfGoods="5"></DisplayProduct>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 }
 

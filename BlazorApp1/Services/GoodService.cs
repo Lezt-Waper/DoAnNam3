@@ -23,11 +23,11 @@ public class GoodService : IGoodService
         }
     }
 
-    public async Task<Good> GetById(int id)
+    public async Task<Good> GetById(string id)
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<Good>($"Good/GetById/{id}") ?? default(Good);
+            return await _httpClient.GetFromJsonAsync<Good>($"Good/{id}") ?? default(Good);
         }
         catch (Exception)
         {
@@ -36,11 +36,24 @@ public class GoodService : IGoodService
         }
     }
 
-    public async Task<IEnumerable<Good>> GetByCategoryId(int categoryId)
+    public async Task<IEnumerable<Good>> GetByCategoryId(string categoryId)
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<Good>>($"Good/ByCategoryId?categoryId={categoryId}") ?? [];
+            return await _httpClient.GetFromJsonAsync<IEnumerable<Good>>($"Good/ByCategory?CategoryId={categoryId}") ?? [];
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    public async Task<GoodDetail> GetGoodDetail(string id)
+    {
+        try
+        {
+            return await _httpClient.GetFromJsonAsync<GoodDetail>($"GoodDetail/{id}");
         }
         catch (Exception)
         {

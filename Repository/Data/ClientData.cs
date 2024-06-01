@@ -26,7 +26,7 @@ public class ClientData : IClientData
         return result.FirstOrDefault();
     }
 
-    public async Task Create(Client client)
+    public async Task<int> Create(Client client)
     {
         dynamic parameter = new { 
             Name = client.Name,
@@ -34,6 +34,10 @@ public class ClientData : IClientData
             Credit = client.Credit,
             Address = client.Address,
         };
-        await _db.SaveData<dynamic>("dbo.spClient_Insert", parameter);
+
+        IEnumerable<int> result = await _db.LoadData<int, dynamic>("dbo.spClient_Insert", parameter);
+
+        return result.FirstOrDefault();
+        
     }
 }

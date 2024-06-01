@@ -1,7 +1,12 @@
 using RSA_Encrypt.RSALib;
+using System.Text;
 using WebApplication1.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+Console.OutputEncoding = Encoding.UTF8;
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // Add services to the container.
 builder.Services.AddDataService();

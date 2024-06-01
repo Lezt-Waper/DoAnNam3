@@ -6,6 +6,6 @@ namespace Repository.Data
     {
         Task<IEnumerable<Client>> Get();
         Task<Client> Get(int id);
-        Task Create(Client client);
+        Task<int> Create(Client client);
     }
 }

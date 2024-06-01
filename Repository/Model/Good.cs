@@ -8,7 +8,7 @@ namespace Repository.Model;
 
 public class Good
 {
-    public int GoodId { get; set; }
+    public string GoodId { get; set; }
     public Category Category { get; set; }
     public string Name { get; set; }
     public int Price { get; set; }

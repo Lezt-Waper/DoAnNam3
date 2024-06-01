@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spGood_GetById]
-	@Id int
+	@Id NVARCHAR(20)
 AS
 begin
 	SELECT G.Id AS GoodId, G.Name, G.Price, G.Quantity, C.Id AS CategoryId, C.CategoryName

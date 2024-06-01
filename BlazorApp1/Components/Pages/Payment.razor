@@ -1,0 +1,51 @@
+﻿@page "/Payment"
+
+@if(cartProduct is null)
+{
+    <h2>Loading....</h2>
+}
+else
+{
+    <Toast @ref="toast"></Toast>
+    <div class="main__container">
+        <div class="grid">
+            <div class="grid__row main__content">
+                <div class="delivery-address">
+                    <div class="delivery-address__label">
+                        <i class="delivery-address__icon fa-solid fa-location-dot"></i>
+                        Địa chỉ nhận hàng
+                    </div>
+                    <EditForm Model="@Client" method="post" class="form" id="form1" OnValidSubmit="HandleSubmition">
+                        <div class="spacer"></div>
+                        <DataAnnotationsValidator></DataAnnotationsValidator>
+                        <ValidationSummary></ValidationSummary>
+
+                        <div class="form-group">
+                            <label for="Name" class="form-label">Họ và Tên</label>
+                            <InputText id="Name" class="form-control" @bind-Value="Client.Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PhoneNumber" class="form-label">Số Điện Thoại</label>
+                            <InputText id="PhoneNumber" class="form-control" @bind-Value="Client.PhoneNumber" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Credit" class="form-label">Số Tài Khoản</label>
+                            <InputText id="Credit" class="form-control" @bind-Value="Client.Credit"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Address" class="form-label">Địa Chỉ</label>
+                            <InputText id="Address" class="form-control" @bind-Value="Client.Address" />
+                        </div>
+
+                    </EditForm>
+                </div>
+
+                <DisplayPayment cartProduct="@cartProduct"></DisplayPayment>
+            </div>
+        </div>
+    </div>
+
+}

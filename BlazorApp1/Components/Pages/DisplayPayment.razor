@@ -1,0 +1,64 @@
+﻿@using Repository.Model
+<div class="product__buy">
+    <div class="product-buy__label">
+        <i class="fa-solid fa-gift"></i>
+        Đơn hàng
+    </div>
+    <div class="transaction">
+        <div class="transaction-product-detail__label">
+            <p class="transaction__detail-content">Sản phẩm</p>
+            <p class="transaction__detail-price">Đơn giá</p>
+            <p class="transaction__detail-quantity">Số lượng</p>
+            <p class="transaction__detail-amount">Thành tiền</p>
+        </div>
+        @foreach (var item in cartProduct)
+        {
+            <div class="transaction__product">
+                <a target="_self" href="/Product/@item.GoodId" class="transaction-product__link">
+                    <img src="/Assets/Img/@item.CategoryId/@item.GoodId/1.jpg" alt="Ảnh cỏ may mắn" class="transaction-product__link-img">
+                </a>
+                <a target="_self" href="/Product/@item.GoodId" class="transaction-product__name-link">@item.GoodName</a>
+                <div class="transaction-product__price">
+                    <span class="transaction-product__price-current">@(item.Price.ToString("N0"))đ</span>
+                </div>
+                <div class="transaction-product-quantity">@item.Quantity</div>
+                <p class="transaction-product__amount">@((item.Price * item.Quantity).ToString("N0"))đ</p>
+            </div>
+        }
+
+        <div class="total-amount-wrap">
+            <div class="total-amount">
+                <p class="total-amount__label">Tổng tiền hàng</p>
+                <p class="total-amount__price">@(Total.ToString("N0"))đ</p>
+            </div>
+            <div class="transport-fee">
+                <p class="transport-fee__label">Phí giao hàng</p>
+                <p class="transport-fee__price">35.000đ</p>
+            </div>
+            <div class="total-payment">
+                <p class="total-payment__label">Tổng thanh toán</p>
+                <p class="total-payment__price">@((Total + 35000).ToString("N0"))đ</p>
+            </div>
+        </div>
+        <div class="">
+            <button type="submit" form="form1" class="product-btn__buy">Đặt hàng</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<OrderDetail> cartProduct { get; set; }
+
+    private int Total;
+
+    protected override void OnInitialized()
+    {
+        Total = 0;
+
+        foreach (var item in cartProduct)
+        {
+            Total += (item.Price * item.Quantity);
+        }
+    }
+}

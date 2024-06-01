@@ -1,0 +1,96 @@
+﻿@using BlazorApp1.Services
+@using Repository.Model
+
+@if (CartProduct.Count == 0)
+{
+    <div style="text-align:center">
+        <img src="Assets/Img/logo.png" alt="Ảnh giỏ hàng trống" style="width:20%">
+        <h1 style="color:red;font-weight:bold; text-align:center; padding: 15px 0;">
+            Giỏ hàng trống
+        </h1>
+    </div>
+}
+else
+{
+    foreach (var item in CartProduct)
+    {
+        <div class="cart__product">
+            <a target="_self" href="/Product/@item.GoodId" class="cart-product__link">
+                <img src="/Assets/Img/@item.CategoryId/@item.GoodId/1.jpg" alt="Ảnh cỏ may mắn"
+                    class="cart-product__link-img">
+            </a>
+            <a target="_self" href="/Product/@item.GoodId" class="cart-product__name-link">@item.GoodName</a>
+            <div class="cart-product__price">
+                <span class="cart-product__price-current">@(item.Price.ToString("N0"))đ</span>
+            </div>
+            <div class="cart-product-quantity">
+                <button class="cart-product__subtract" @onclick="@(() => DecreaseQuantity(item))">
+                    <i class="cart-product-subtract__icon fa-solid fa-minus"></i>
+                </button>
+                <input type="number" name="" min="1"
+                    class="cart-product-input__quantity" value="@item.Quantity">
+                <button class="cart-product__add" @onclick="@(() => IncreaseQuantity(item))">
+                    <i class="cart-product__add-icon fa-solid fa-plus"></i>
+                </button>
+            </div>
+            <p class="cart-product__amount"> @((item.Price * item.Quantity).ToString("N0"))đ</p>
+            <i class="cart-detail__icon-delete fa-solid fa-trash" @onclick="@(() => DeleteItem(item))"></i>
+        </div>
+    }
+    <div class="cart__pay">
+        <p class="cart-amount-old">
+            <span class="cart-amount-old__label">Tạm Tính</span>
+            <span class="total-price-old">@(TotalPrice().ToString("N0"))đ</span>
+        </p>
+        <p class="cart-amount-old">
+            <span class="cart-amount-old__label">Vat</span>
+            <span class="total-price-old">0đ</span>
+        </p>
+        <p class="cart-amount-current">
+            <span class="cart-amount-current__label">Thành tiền</span>
+            <span class="total-price-current">@(TotalPrice().ToString("N0"))đ</span>
+        </p>
+        <div class="cart-pay__btn-submit">
+            <a href="/Payment" class="cart-pay__btn-submit-link">Tiến hành đặt hàng</a>
+        </div>
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public List<OrderDetail> CartProduct { get; set; }
+
+    [Inject]
+    private ICartService CartService { get; set; }
+
+    public async Task IncreaseQuantity(OrderDetail orderDetail)
+    {
+        orderDetail.Quantity++;
+        await CartService.SaveStorage(CartProduct);
+    }
+
+    public async Task DecreaseQuantity(OrderDetail orderDetail)
+    {
+        orderDetail.Quantity--;
+        await CartService.SaveStorage(CartProduct);
+    }
+
+    public async Task DeleteItem(OrderDetail orderDetail)
+    {
+        CartProduct.Remove(orderDetail);
+        await CartService.SaveStorage(CartProduct);
+    }
+
+    public int TotalPrice()
+    {
+        int sum = 0;
+        foreach (var item in CartProduct)
+        {
+            sum += (item.Price * item.Quantity);
+        }
+
+        return sum;
+    }
+
+}

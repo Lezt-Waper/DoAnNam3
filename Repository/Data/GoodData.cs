@@ -34,7 +34,7 @@ public class GoodData : IGoodData
 
         return goods.Distinct().ToList();
     }
-    public async Task<Good> Get(int id)
+    public async Task<Good> Get(string id)
     {
         using var connect = new SqlConnection(_db.GetConnectionString());
 
@@ -51,7 +51,7 @@ public class GoodData : IGoodData
         return goods.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<Good>> GetByCategoryId(int cId)
+    public async Task<IEnumerable<Good>> GetByCategoryId(string cId)
     {
         using var connect = new SqlConnection(_db.GetConnectionString());
 
