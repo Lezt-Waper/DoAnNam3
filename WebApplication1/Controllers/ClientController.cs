@@ -72,7 +72,7 @@ public class ClientController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] ClientEncrypt clientEncrypt)
+    public async Task<IActionResult> Create([FromBody] ClientEncrypt clientEncrypt, [FromQuery] long n, [FromQuery] long pKey)
     {
         //Logging data receive
         _logger.LogInformation("Client Data Server Receive\n" + JsonConvert.SerializeObject(clientEncrypt, Formatting.Indented));
@@ -89,7 +89,14 @@ public class ClientController : Controller
                 return BadRequest();    
             }
 
-            return Ok(result);
+            _logger.LogInformation($"Client Id: {result}");
+
+            RSA.SetKey(n, pKey);
+            IEnumerable<long> encryptedResult = RSA.Encrypt($"{result}");
+
+            _logger.LogInformation("Encrypted Client Id\n" + JsonConvert.SerializeObject(encryptedResult, Formatting.Indented));
+
+            return Ok(encryptedResult);
         }
         catch (Exception)
         {

@@ -32,31 +32,27 @@ public class ClientService : IClientService
             //Logging the encrypted client data
             _logger.LogInformation("Encrypted Client Data\n" + JsonConvert.SerializeObject(clientEncrypt, Formatting.Indented));
 
-            var result = await _httpClient.PostAsJsonAsync<ClientEncrypt>("/Client", clientEncrypt);
+            var result = await _httpClient.PostAsJsonAsync<ClientEncrypt>($"/Client?n={RSA.N}&pKey={RSA.PublicKey}", clientEncrypt);
 
             if (!result.IsSuccessStatusCode)
             {
                 throw new Exception("Can't create client");
             }
 
-            string temp = await result.Content.ReadAsStringAsync();
+            var encryptedClientId = await result.Content.ReadFromJsonAsync<IEnumerable<long>>();
 
-            int i;
-            if (int.TryParse(temp, out i))
+            if (encryptedClientId is null)
             {
-                if (i == 0)
-                {
-                    throw new Exception("Failed to create");
-                }
-                else
-                {
-                    return i;
-                }
+                throw new Exception("Can't create client");
             }
-            else
-            {
-                throw new Exception("Failed to create");
-            }
+
+            _logger.LogInformation("Encrypted Client Id\n" + JsonConvert.SerializeObject(encryptedClientId, Formatting.Indented));
+
+            var clientId = RSA.Decrypt(encryptedClientId);
+
+            _logger.LogInformation("Client Id\n" + JsonConvert.SerializeObject(clientId, Formatting.Indented));
+
+            return Convert.ToInt32(clientId);
         }
         catch (Exception)
         {

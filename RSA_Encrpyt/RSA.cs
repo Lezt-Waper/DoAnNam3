@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using RSA_Encrypt.RSACalculatorLib;
+﻿using RSA_Encrypt.RSACalculatorLib;
 
 namespace RSA_Encrypt.RSALib
 {
     public class RSA
     {
-        private long p1, p2;
         private long privateKey;
-        private long ring;
         public long N { get; private set; }
         public long PublicKey { get; private set; }
         public long DestN { get; set; }
@@ -23,19 +15,17 @@ namespace RSA_Encrypt.RSALib
             Initial();
         }
 
-        public async void Initial()
+        public  void Initial()
         {
-            p1 = await GeneratePrimes();
-            p2 = await GeneratePrimes();
+            long p1 =  GeneratePrimes();
+            long p2 =  GeneratePrimes();
             N = p1 * p2;
-            ring = (p1 - 1) * (p2 - 1);
-            GenerateKey();
+            GenerateKey((p1 - 1) * (p2 - 1));
         }
 
-        public static async Task<int> GeneratePrimes()
+        public static long GeneratePrimes()
         {
             int prime = 0;
-            int temp = 0;
             Random random = new Random();
             bool isPrime = false;
 
@@ -49,12 +39,12 @@ namespace RSA_Encrypt.RSALib
             return prime;
         }
 
-        public void GenerateKey()
+        public void GenerateKey(long ring)
         {
             Random random = new Random();
             while (true)
             {
-                PublicKey = random.NextInt64(1000, ring);
+                PublicKey = random.NextInt64(10000, ring);
                 if (RSACalculator.GCD(PublicKey, ring) == 1)
                 {
                     break;

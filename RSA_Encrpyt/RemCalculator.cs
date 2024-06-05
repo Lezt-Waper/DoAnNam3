@@ -36,7 +36,8 @@ class RSACalculator
     {
         long result = 1;
 
-        //Temp is modulo of arg^(2^n) in ring divisor, base case is n = 0
+        //Temp is modulo of arg^(2^n) by divisor
+        //Initiate the base case with n = 0
         long temp = arg % divisor;
 
         while (power != 0)
@@ -44,11 +45,11 @@ class RSACalculator
             //Check if power have 2^n
             if ((power % 2) == 1)
             {
-                //Add the temp to the result
+                //Multiple the temp to the result
                 result = ((result % divisor) * (temp % divisor)) % divisor;
             }
 
-            //Compute the modulo of arg^(2^(n+1)) in ring divisor
+            //Compute the modulo of arg^(2^(n+1)) by divisor
             temp = ((temp % divisor) * (temp % divisor)) % divisor;
 
             //Go to next step n+1

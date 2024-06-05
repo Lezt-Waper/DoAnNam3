@@ -116,8 +116,6 @@ else
     [Inject]
     protected ICartService CartService { get; set; }
     [Inject]
-    protected INavMenuService NavMenuService { get; set; }
-    [Inject]
     protected NavigationManager NavigationManager { get; set; }
 
     public GoodDetail GoodDetail { get; set; }
@@ -144,7 +142,6 @@ else
         orderDetail.Quantity = 1;
 
         await CartService.AddProductToCart(orderDetail);
-        NavMenuService.ChangeCart();
 
         toast.ShowSuccess("Bạn đã thêm sản phẩm vào giỏ hàng thành công.");
     }
@@ -159,7 +156,6 @@ else
         orderDetail.Quantity = 1;
 
         await CartService.AddProductToCart(orderDetail);
-        NavMenuService.ChangeCart();
 
         NavigationManager.NavigateTo("/Payment");
     }

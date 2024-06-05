@@ -22,7 +22,6 @@ builder.Services.AddScoped(sp =>
 builder.Services.AddScoped<IGoodService, GoodService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
-builder.Services.AddScoped<INavMenuService, NavMenuService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddSingleton<RSA>(new RSA());
